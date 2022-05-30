@@ -8,7 +8,8 @@
   },
   "author": "Luis Martínez",
   "license": "ISC",
-  "keywords": [ "node-red" ,"virtual-battery"],
+  "keywords": [ "node-red" ,"virtual-battery"], 
+  "repository": { "type": "git", "url": "https://github.com/wapophis/node-red-contrib-virtual-battery-slotter" },
   "node-red": {
     "nodes": {
       "virtual-battery-solax-slotter": "virtual-battery-solax-slotter.js"
