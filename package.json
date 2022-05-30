@@ -1,0 +1,20 @@
+{
+  "name": "@virtualbat/solax-battery-slotter",
+  "version": "1.0.0",
+  "description": "Get readings from solax inputs and calculate a battery slot which represents de energy transferred to the virtual battery in a range time.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luis Martínez",
+  "license": "ISC",
+  "keywords": [ "node-red" ,"virtual-battery"],
+  "node-red": {
+    "nodes": {
+      "virtual-battery-solax-slotter": "virtual-battery-solax-slotter.js"
+    }
+  },
+  "dependencies": {
+    "@js-joda/core": "^5.2.0"
+  }
+}
