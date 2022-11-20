@@ -2,9 +2,9 @@
 const LocalDateTime = require('@js-joda/core').LocalDateTime;
 const ChronoUnit=require("@js-joda/core").ChronoUnit;
 const DateTimeFormatter=require('@js-joda/core').DateTimeFormatter;
+const NodeSolaxSlotter=require("./build/NodeSolaxSlotter.js");
 
-
-class BatterySlot{
+/*class BatterySlot{
     constructor(msg){
         let dateTimeformater=DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss');
         this.readTimeStamp=LocalDateTime.parse(msg.payload.uploadTime,dateTimeformater).plusHours(1);
@@ -28,17 +28,23 @@ class BatterySlot{
             consumedInWatsH:this.consumedInWatsH
         };
     }
-}
+}*/
 
 module.exports = function(RED) {
-    var currentSlot=null;
-    var receivedSlot=null;
+   
     
     function VirtualBatterySlotterNode(config) {
+     /*   var currentSlot=null;
+        var receivedSlot=null;*/
+
         RED.nodes.createNode(this,config);
         var node = this;
+        var slotter=new NodeSolaxSlotter.NodeSolaxSlotter(this);
+
         node.on('input',function(msg, send, done){
-           receivedSlot=new BatterySlot(msg);
+            slotter.onInput(msg,send,done);
+
+        /*   receivedSlot=new BatterySlot(msg.payload);
            if(currentSlot!==null){
               
             /// prevent flooding from client with repeated values
@@ -57,7 +63,7 @@ module.exports = function(RED) {
            send(msg);
            currentSlot=receivedSlot;
            node.status({fill:"green",shape:"dot",text:"Reporting"});
-            done();
+            done();*/
         });
     }
     
