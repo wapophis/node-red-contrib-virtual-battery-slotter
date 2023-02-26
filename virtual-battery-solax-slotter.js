@@ -40,6 +40,7 @@ module.exports = function(RED) {
         RED.nodes.createNode(this,config);
         var node = this;
         var slotter=new NodeSolaxSlotter.NodeSolaxSlotter(this);
+        slotter.readTimeStampOffset=Number(config.timeStampOffset);
 
         node.on('input',function(msg, send, done){
             slotter.onInput(msg,send,done);

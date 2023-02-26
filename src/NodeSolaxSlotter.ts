@@ -6,15 +6,17 @@ export class NodeSolaxSlotter {
     currentSlot:BatterySlot|null=null;
     receivedSlot:BatterySlot|null=null;
     node:any=null;
+    readTimeStampOffset:number;
 
     constructor(node:any){
       this.node=node;
+      this.readTimeStampOffset=0;
     }
 
     onInput(msg:any,send:any,done:any){
         let dateTimeformater=DateTimeFormatter.ofPattern('yyyy-MM-dd HH:mm:ss');
         let batSlotPayload:any={};
-        batSlotPayload.readTimeStamp=LocalDateTime.parse(msg.payload.uploadTime,dateTimeformater).plusHours(1);
+        batSlotPayload.readTimeStamp=LocalDateTime.parse(msg.payload.uploadTime,dateTimeformater).plusHours(this.readTimeStampOffset);
         //this.length=LocalDateTime.now().until(readTimeStamp,ChronoUnit.SECONDS)*1000;
         batSlotPayload.length=null;
         batSlotPayload.producedInWatsH=msg.payload.acpower;
